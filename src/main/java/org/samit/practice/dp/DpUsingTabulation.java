@@ -5,7 +5,7 @@ package org.samit.practice.dp;
  * F(0) = 0, F(1) = 1, F(2) = 1, F(3) = 2 ....
  * This is a bottom up approach where lower values are filled first
  * Dimension of array depends on the number of varying params
- * Time complexity - Theta(n), Aus space - Theta(n)
+ * Time complexity - Theta(n), Aux space - Theta(n)
  */
 public class DpUsingTabulation {
 
