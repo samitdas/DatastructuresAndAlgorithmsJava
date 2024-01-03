@@ -25,6 +25,11 @@ public class DpUsingMemoization {
         else return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
     }
 
+    /**
+     * top down approach with time complexity Theta(n)
+     * @param n
+     * @return
+     */
     private int fibMemoization(int n) {
         if (mem[n] == -1) {
             int res;
