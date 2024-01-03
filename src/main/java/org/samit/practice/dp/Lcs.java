@@ -1,5 +1,8 @@
 package org.samit.practice.dp;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * Longest Common Subsequence - Given 2 strings find the longest common subsequence
  * What is a subsequence - give a string "abc" , there can be 8 subsequence ( 2^l (l - length of string) )
@@ -32,6 +35,7 @@ public class Lcs {
         // tabulation based solution
         int tabRes = lcs.lcsTabulation(first, second); // answer should be 3 ("bcg")
         System.out.println("LCS value using tabulation is : " + tabRes);
+        lcs.printLcs(first, second);
 
     }
 
@@ -100,13 +104,40 @@ public class Lcs {
         // start form index 1,1 as 0 is filled in the first row and first column for base cases ( either m=0 or n=0 )
         for (int i = 1; i < s1.length() + 1; i++) {
             for (int j = 1; j < s2.length() + 1; j++) {
-                if(s1.charAt(i-1) == s2.charAt(j-1))
-                    tab[i][j] = 1 + tab[i-1][j-1]; // take the diagonal
+                if (s1.charAt(i - 1) == s2.charAt(j - 1))
+                    tab[i][j] = 1 + tab[i - 1][j - 1]; // take the diagonal
                 else
-                    tab[i][j] = Math.max(tab[i][j-1],tab[i-1][j]); // take max of immediate left and immediate top
+                    tab[i][j] = Math.max(tab[i][j - 1], tab[i - 1][j]); // take max of immediate left and immediate top
             }
         }
 
         return tab[s1.length()][s2.length()];
+    }
+
+    private void printLcs(String s1, String s2) {
+        // matrix sizes
+        int m = s1.length();
+        int n = s2.length();
+
+        Deque<Character> deque = new ArrayDeque<>();
+
+        // start from the index tab[m][n]
+
+        while (m != 0 && n != 0) {
+            if (s1.charAt(m - 1) == s2.charAt(n - 1)) {
+                deque.push(s1.charAt(m - 1));
+                m--;
+                n--; // go upward diagonally
+            } else {
+                if (tab[m][n - 1] > tab[m - 1][n])
+                    n--;
+                else m--;
+            }
+        }
+
+        while (!deque.isEmpty()) {
+            System.out.print(deque.pop());
+        }
+
     }
 }
