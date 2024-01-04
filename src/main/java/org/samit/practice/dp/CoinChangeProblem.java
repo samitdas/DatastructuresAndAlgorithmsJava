@@ -26,6 +26,7 @@ public class CoinChangeProblem {
 
     /**
      * Time : O(n*sum) , Aux space : O(n*sum)
+     * tab[i][j] denotes the number of combinations possible with first i coins with sum j
      * @param coins
      * @param sum
      * @return
