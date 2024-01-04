@@ -1,5 +1,7 @@
 package org.samit.practice.dp;
 
+import static org.samit.practice.util.DsUtil.findMin;
+
 /**
  * Minimum number of operations required to convert given string s1 to another string s2
  */
@@ -13,12 +15,7 @@ public class EditDistanceProblem {
         System.out.println("Minimum operations using dp solution : " + edp.editDistanceDpSolution(s1, s2));
     }
 
-    private static int findMin(int a, int b, int c) {
-        int temp = a;
-        if (a > b)
-            temp = b;
-        return Math.min(temp, c);
-    }
+
 
     private int editDistanceRecursive(String s1, String s2, int m, int n) {
 
