@@ -1,5 +1,10 @@
 package org.samit.practice.dp;
 
+/**
+ * Given an array of number of pages for each book and number of students to read
+ * find the minimum of the maximum pages read by a student
+ * A student can only read contiguous books
+ */
 public class AllocatePages {
 
     public static void main(String[] args) {
