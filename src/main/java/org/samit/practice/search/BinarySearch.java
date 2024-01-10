@@ -35,7 +35,6 @@ public class BinarySearch {
     }
 
     private int recursive(int[] arr, int l, int h, int val) {
-        if (h < 0) return -1;
         if (l > h) return -1;
 
         var mid = (l + h) / 2;
