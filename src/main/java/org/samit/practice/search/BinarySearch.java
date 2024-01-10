@@ -31,7 +31,7 @@ public class BinarySearch {
             } else h = mid - 1;
         }
 
-        return (h < 0 || l > h) ? -1 : l;
+        return -1;
     }
 
     private int recursive(int[] arr, int l, int h, int val) {
