@@ -14,6 +14,13 @@ public class CountOccurrence {
         var res = lastIndex == -1 ? 0 : (lastIndex - firstIndex) + 1;
 
         System.out.println("Count of occurrence of 40 : " + res);
+
+        // count 1s in a sorted binary array
+        int[] binArr = {0,0,0,0,0,0,1};
+        SearchIndexOfOccurrence bs1 = new SearchIndexOfOccurrence();
+        firstIndex = bs1.firstOccurrence(binArr, 1) ;
+        var res1 = firstIndex == -1 ? 0 : (binArr.length - firstIndex) ;
+        System.out.println("Count of 1s : "+ res1);
     }
 
 
