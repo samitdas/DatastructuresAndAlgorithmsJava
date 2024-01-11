@@ -3,6 +3,7 @@ package org.samit.practice.search;
 /**
  * Given a sorted array find the index of first and last occurrence of a given value
  * The array may have duplicates. If not present then return -1
+ * TC : O(Log n) and Aux Space O(1)
  */
 public class SearchIndexOfOccurrence {
 
@@ -17,9 +18,11 @@ public class SearchIndexOfOccurrence {
         System.out.println("last index of 40 : " + bs.lastOccurrence(arr, 40));
         System.out.println("first index of 40 : " + bs.firstOccurrence(arr, 40));
         System.out.println("last index of 10 : " + bs.lastOccurrence(arr, 10));
+        System.out.println("first index of 10 : " + bs.firstOccurrence(arr, 10));
+        System.out.println("last index of 50 : " + bs.firstOccurrence(arr, 50));
     }
 
-    private int firstOccurrence(int[] arr, int val) {
+    protected int firstOccurrence(int[] arr, int val) {
         var l = 0;
         var h = arr.length - 1;
 
@@ -31,7 +34,7 @@ public class SearchIndexOfOccurrence {
             } else if (arr[mid] > val) {
                 h = mid - 1;
             } else {
-                if (arr[mid] == val && arr[mid - 1] != val) {
+                if (arr[mid] == val && (mid-1 < 0 || arr[mid - 1] != val)) {
                     return mid;
                 } else {
                     h = mid - 1;
@@ -42,7 +45,7 @@ public class SearchIndexOfOccurrence {
         return -1;
     }
 
-    private int lastOccurrence(int[] arr, int val) {
+    protected int lastOccurrence(int[] arr, int val) {
         var l = 0;
         var h = arr.length - 1;
 
@@ -53,7 +56,7 @@ public class SearchIndexOfOccurrence {
             } else if (arr[mid] > val) {
                 h = mid - 1;
             } else {
-                if (arr[mid] == val && arr[mid + 1] != val)
+                if (arr[mid] == val && (mid+1 > arr.length-1 || arr[mid + 1] != val))
                     return mid;
                 else l = mid + 1;
             }
