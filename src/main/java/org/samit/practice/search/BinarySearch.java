@@ -23,7 +23,7 @@ public class BinarySearch {
      * @param val
      * @return
      */
-    private int iterative(int[] arr, int val) {
+    protected int iterative(int[] arr, int val) {
         // local var jdk11
         var l = 0;
         var h = arr.length - 1;
@@ -46,7 +46,7 @@ public class BinarySearch {
      * @param val
      * @return
      */
-    private int recursive(int[] arr, int l, int h, int val) {
+    protected int recursive(int[] arr, int l, int h, int val) {
         if (l > h) return -1;
 
         var mid = (l + h) / 2;
