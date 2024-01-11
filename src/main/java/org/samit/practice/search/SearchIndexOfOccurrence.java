@@ -25,16 +25,18 @@ public class SearchIndexOfOccurrence {
 
         while (l <= h) {
             var mid = (l + h) / 2;
-            if (arr[mid] == val) {
-                {
-                    while (arr[mid] == val) {
-                        mid--;
-                    }
-                    return mid + 1;
-                }
-            } else if (arr[mid] < val) {
+
+            if (arr[mid] < val) {
                 l = mid + 1;
-            } else h = mid - 1;
+            } else if (arr[mid] > val) {
+                h = mid - 1;
+            } else {
+                if (arr[mid] == val && arr[mid - 1] != val) {
+                    return mid;
+                } else {
+                    h = mid - 1;
+                }
+            }
         }
 
         return -1;
@@ -46,16 +48,15 @@ public class SearchIndexOfOccurrence {
 
         while (l <= h) {
             var mid = (l + h) / 2;
-            if (arr[mid] == val) {
-                {
-                    while (arr[mid] == val) {
-                        mid++;
-                    }
-                    return mid - 1;
-                }
-            } else if (arr[mid] < val) {
+            if (arr[mid] < val) {
                 l = mid + 1;
-            } else h = mid - 1;
+            } else if (arr[mid] > val) {
+                h = mid - 1;
+            } else {
+                if (arr[mid] == val && arr[mid + 1] != val)
+                    return mid;
+                else l = mid + 1;
+            }
         }
 
         return -1;
