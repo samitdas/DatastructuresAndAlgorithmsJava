@@ -17,6 +17,12 @@ public class BinarySearch {
         System.out.println("recursive : index of 40 : " + bs.recursive(arr, 0, arr.length - 1, 40));
     }
 
+    /**
+     * TC : O(Log n), Aux space : Theta(1)
+     * @param arr
+     * @param val
+     * @return
+     */
     private int iterative(int[] arr, int val) {
         // local var jdk11
         var l = 0;
@@ -34,6 +40,12 @@ public class BinarySearch {
         return -1;
     }
 
+    /**
+     * TC : O(Log n), Aux space : O(Log n)
+     * @param arr
+     * @param val
+     * @return
+     */
     private int recursive(int[] arr, int l, int h, int val) {
         if (l > h) return -1;
 
