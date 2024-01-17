@@ -47,4 +47,14 @@ public class AdjacencyList {
             System.out.println(i + " : " + adj.get(i));
         }
     }
+
+    /**
+     * For directed graph
+     * @param adj
+     * @param u
+     * @param v
+     */
+    public static void addEdgeDirected(ArrayList<ArrayList<Integer>> adj, int u, int v){
+        adj.get(u).add(v);
+    }
 }
