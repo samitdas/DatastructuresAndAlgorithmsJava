@@ -1,6 +1,9 @@
 package org.samit.practice.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * TC : O(V+E)
@@ -44,6 +47,8 @@ public class DetectCycle {
         AdjacencyList.printAdj(dfsAdjDirected);
 
         System.out.println("is cycle for directed graph : " + dc.dfsForDirectedGraph(dfsAdjDirected));
+
+        dc.startBfsForCyceDetection();
     }
 
     /**
@@ -118,6 +123,63 @@ public class DetectCycle {
         }
 
         return false;
+    }
+
+    /**
+     * Use topological sort ( kahn's bfs algo) to detect loop
+     * @return
+     */
+    private boolean detectCycleBfs(ArrayList<ArrayList<Integer>> adj, int[] indegree){
+
+        int V = adj.size(), count = 0;
+
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int i = 0; i < indegree.length; i++) {
+            if (indegree[i] == 0)
+                q.add(i);
+        }
+
+        while (!q.isEmpty()) {
+            int u = q.poll();
+            System.out.print(u + " ");
+            for (int v : adj.get(u)) {
+                indegree[v]--;
+                if (indegree[v] == 0)
+                    q.add(v);
+            }
+            count++;
+        }
+
+        return (count != V);
+    }
+
+    private void startBfsForCyceDetection(){
+
+        // Directed Cyclic Graph
+        ArrayList<ArrayList<Integer>> dfsAdjDirected = new ArrayList<>(5);
+        int[] indegree = new int[5];
+        for (int i = 0; i < 5; i++) {
+            dfsAdjDirected.add(new ArrayList<>());
+        }
+
+        AdjacencyList.addEdgeDirected(dfsAdjDirected, 0, 1);
+        indegree[1]++;
+        AdjacencyList.addEdgeDirected(dfsAdjDirected, 1, 2);
+        indegree[2]++;
+        AdjacencyList.addEdgeDirected(dfsAdjDirected, 2, 3);
+        indegree[3]++;
+        AdjacencyList.addEdgeDirected(dfsAdjDirected, 3, 1);
+        indegree[1]++;
+        AdjacencyList.addEdgeDirected(dfsAdjDirected, 4, 1);
+        indegree[1]++;
+
+        AdjacencyList.printAdj(dfsAdjDirected);
+        System.out.println("indegree : " + Arrays.toString(indegree));
+
+        DetectCycle dc = new DetectCycle();
+        System.out.println("is cycle for directed cyclic graph : " + dc.detectCycleBfs(dfsAdjDirected, indegree));
+
     }
 
 }
