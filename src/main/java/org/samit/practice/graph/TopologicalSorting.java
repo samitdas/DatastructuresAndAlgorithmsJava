@@ -34,7 +34,7 @@ public class TopologicalSorting {
 
         // call topological sort
         TopologicalSorting ts = new TopologicalSorting();
-        ts.topologicalSort(dfsAdjDirected, indegree);
+        ts.topologicalSort(dfsAdjDirected, indegree , null);
 
         // call dfs based solution
         System.out.println();
@@ -47,7 +47,7 @@ public class TopologicalSorting {
      * @param adj
      * @param indegree
      */
-    private void topologicalSort(ArrayList<ArrayList<Integer>> adj, int[] indegree) {
+    public void topologicalSort(ArrayList<ArrayList<Integer>> adj, int[] indegree, List<Integer> tsList) {
         Queue<Integer> q = new LinkedList<>();
 
         for (int i = 0; i < indegree.length; i++) {
@@ -58,6 +58,8 @@ public class TopologicalSorting {
         while (!q.isEmpty()) {
             int u = q.poll();
             System.out.print(u + " ");
+            if(tsList != null)
+                tsList.add(u);
             for (int v : adj.get(u)) {
                 indegree[v]--;
                 if (indegree[v] == 0)
