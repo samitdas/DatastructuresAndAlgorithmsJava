@@ -6,6 +6,7 @@ import java.util.Comparator;
 /**
  * Given few items of certain weight and values and a knapsack of X capacity
  * find the maximum value that can be obtained. Taking fraction of values is allowed
+ * TC : O(n Log n)
  */
 public class FractionalKnapsack {
     public static void main(String[] args) {
