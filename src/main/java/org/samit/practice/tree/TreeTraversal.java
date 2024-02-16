@@ -29,6 +29,8 @@ public class TreeTraversal {
         traversal.postOrderTraversal(root);
 
         System.out.println("height : " + traversal.height(root));
+        System.out.println("2nd level nodes : ");
+        traversal.printKthLevelNodes(root,1);
 
     }
 
@@ -72,6 +74,19 @@ public class TreeTraversal {
         if(node == null)
             return 0;
         else return Math.max(height(node.getLeft()), height(node.getRight())) + 1;
+    }
+
+    private void printKthLevelNodes(TreeNode node , int k){
+        if(node != null) {
+
+            if(k==0)
+                System.out.println(node.getVal());
+            else{
+                printKthLevelNodes(node.getLeft(), k-1);
+                printKthLevelNodes(node.getRight(), k-1);
+            }
+        }
+
     }
 
 
